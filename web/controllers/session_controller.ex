@@ -10,6 +10,7 @@ defmodule PhoenixTest.SessionController do
   def update(conn, %{"email" => email, "password" => password}) do
     result = Repo.transaction(fn ->
       with user <- Repo.get_by(User, email: email),
+      true <- !is_nil(user),
       login <- Repo.get_by(Login, user_id: user.id),
       true <- checkpw(password, login.password_hash),
       {:ok, session} <-
@@ -18,7 +19,7 @@ defmodule PhoenixTest.SessionController do
       do session
       else
         {:error, error_key} -> Repo.rollback(error_key)
-        false -> Repo.rollback()
+        _ -> Repo.rollback(:unauthorized)
       end
     end)
 
@@ -27,6 +28,10 @@ defmodule PhoenixTest.SessionController do
         conn
         |> put_status(:ok)
         |> render("show.json", session: session)
+      {:error, :unauthorized} ->
+        conn
+        |> put_status(:unauthorized)
+        |> render("error.json", %{})
       {:error, changeset} ->
         conn
         |> put_status(:unauthorized)

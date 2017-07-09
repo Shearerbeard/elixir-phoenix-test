@@ -11,6 +11,7 @@ defmodule PhoenixTest.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug CORSPlug
   end
 
   scope "/", PhoenixTest do

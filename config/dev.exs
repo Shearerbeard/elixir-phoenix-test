@@ -41,3 +41,6 @@ config :phoenix_test, PhoenixTest.Repo,
   database: "phoenix_test_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1

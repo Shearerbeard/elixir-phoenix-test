@@ -10,4 +10,8 @@ defmodule PhoenixTest.SessionView do
       user_id: session.user_id,
       token: session.token}
   end
+
+  def render("error.json", _) do
+    %{errors: "failed to authenticate"}
+  end
 end

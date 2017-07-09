@@ -27,7 +27,7 @@ defmodule PhoenixTest.LoginController do
                      "password" => password,
                      "bio" => bio,
                      "number_of_pets" => number_of_pets,
-                    "email" => email}) do
+                      "email" => email}) do
 
     login_params = %{
       :name => name,

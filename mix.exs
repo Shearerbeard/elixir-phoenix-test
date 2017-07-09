@@ -38,6 +38,7 @@ defmodule PhoenixTest.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:comeonin, "~> 2.0"},
      {:secure_random, "~> 0.5"},
+     {:cors_plug, "~> 1.1"},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:dogma, "~> 0.1", only: [:dev]},
