@@ -25,7 +25,7 @@ defmodule PhoenixTest.Router do
   scope "/api", PhoenixTest, as: :api do
     pipe_through :api
     put "/login", LoginController, :create
-    get "/login/:id", LoginController, :show
+    post "/session", SessionController, :update
     get "/hello/tests", PageController, :tests
     get "/hello/test", PageController, :test
   end
