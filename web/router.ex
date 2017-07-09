@@ -35,7 +35,7 @@ defmodule PhoenixTest.Router do
     get "/hello/test", PageController, :test
     scope "/auth", Auth, as: :auth do
       pipe_through :authenticated
-      get "/restricted", SelfController, :show
+      get "/self", SelfController, :show
     end
   end
 
