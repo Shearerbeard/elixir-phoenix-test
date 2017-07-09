@@ -14,6 +14,10 @@ defmodule PhoenixTest.Router do
     plug CORSPlug
   end
 
+  pipeline :authenticated do
+    plug PhoenixTest.Plug.Authentication
+  end
+
   scope "/", PhoenixTest do
     pipe_through :browser # Use the default browser stack
 
@@ -29,6 +33,10 @@ defmodule PhoenixTest.Router do
     post "/session", SessionController, :update
     get "/hello/tests", PageController, :tests
     get "/hello/test", PageController, :test
+    scope "/auth", Auth, as: :auth do
+      pipe_through :authenticated
+      get "/restricted", SelfController, :show
+    end
   end
 
   # Other scopes may use custom stacks.
